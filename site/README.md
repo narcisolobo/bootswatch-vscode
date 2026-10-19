@@ -16,8 +16,7 @@ Requires Node 22.22 or newer (Astro 7).
 ## One-time GitHub setup
 
 1. Create the GitHub repo.
-2. Set `owner` and `repo` in `site.config.mjs`. They set the Pages base path and every GitHub link. Also update the base path used in the guard test in `test/build.test.ts` if the repo name changes.
-3. In the repo, go to Settings, then Pages, and set Source to "GitHub Actions".
+2. Set `owner` and `repo` in `site.config.mjs`. They set the Pages base path and every GitHub link.3. In the repo, go to Settings, then Pages, and set Source to "GitHub Actions".
 4. Push to `main`. `.github/workflows/pages.yml` builds and deploys the site.
 
 When the extension is on the Marketplace, set `marketplaceUrl` in `site.config.mjs`. The "Install for VS Code" button and the footer link switch to it.

@@ -2,6 +2,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { expect, test } from "vitest";
+import { SITE } from "../site.config.mjs";
 
 const read = (p: string) => readFileSync(resolve(process.cwd(), p), "utf8");
 const home = read("dist/index.html");
@@ -32,7 +33,7 @@ test("no root-relative links escape the base path", () => {
   for (const f of ["index.html", "themes/index.html", "docs/index.html", "releases/index.html"]) {
     const bad = [...read(`dist/${f}`).matchAll(/(?:href|src)="(\/[^"]*)"/g)]
       .map((m) => m[1])
-      .filter((u) => !u.startsWith("/bootswatch-vscode/"));
+      .filter((u) => !u.startsWith(`/${SITE.repo}/`));
     expect(bad, f).toEqual([]);
   }
 });
