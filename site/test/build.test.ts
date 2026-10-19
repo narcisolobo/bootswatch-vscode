@@ -27,3 +27,12 @@ test("docs has install anchor and readability numbers", () => {
 });
 
 test("release notes render the changelog", () => expect(read("dist/releases/index.html")).toContain("1.0.0"));
+
+test("no root-relative links escape the base path", () => {
+  for (const f of ["index.html", "themes/index.html", "docs/index.html", "releases/index.html"]) {
+    const bad = [...read(`dist/${f}`).matchAll(/(?:href|src)="(\/[^"]*)"/g)]
+      .map((m) => m[1])
+      .filter((u) => !u.startsWith("/bootswatch-vscode/"));
+    expect(bad, f).toEqual([]);
+  }
+});
