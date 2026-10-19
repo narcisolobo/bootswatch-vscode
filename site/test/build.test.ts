@@ -19,3 +19,11 @@ test("themes page has six tabs and samples", () => {
   expect(themes.match(/<pre class="code"/g)).toHaveLength(6);
   expect(themes).toContain("The brave and the blue");
 });
+
+test("docs has install anchor and readability numbers", () => {
+  const d = read("dist/docs/index.html");
+  expect(d).toMatch(/id="install"/);
+  expect(d).toContain("4.5:1");
+});
+
+test("release notes render the changelog", () => expect(read("dist/releases/index.html")).toContain("1.0.0"));
