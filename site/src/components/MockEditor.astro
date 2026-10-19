@@ -1,0 +1,241 @@
+---
+import { loadThemes } from "../lib/themes";
+import { renderSamples, SAMPLES } from "../lib/highlight";
+
+const { html, css } = await renderSamples(SAMPLES, loadThemes());
+
+const LANG_NAMES: Record<string, string> = {
+  tsx: "TypeScript JSX",
+  css: "CSS",
+  html: "HTML",
+  md: "Markdown",
+  json: "JSON",
+  py: "Python",
+};
+
+const ANSI = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"];
+const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
+---
+
+<style is:global set:html={css} />
+
+<div class="vsc" id="mock-editor">
+  <div class="vsc-title">
+    <span class="vsc-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="vsc-title-text" id="vsc-title-text">{SAMPLES[0].file} — Bootswatch</span>
+  </div>
+
+  <div class="vsc-body">
+    <div class="vsc-activity" aria-hidden="true">
+      <span class="vsc-act on">▤</span><span class="vsc-act">⌕</span><span class="vsc-act">⑂</span><span class="vsc-act">▷</span>
+    </div>
+
+    <div class="vsc-side">
+      <div class="vsc-side-title">EXPLORER</div>
+      <ul class="vsc-files">
+        {
+          SAMPLES.map((s, i) => (
+            <li>
+              <button type="button" data-file={s.id} class:list={["vsc-file", { active: i === 0 }]}>
+                {s.file}
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="vsc-main">
+      <div class="vsc-tabs" role="tablist">
+        {
+          SAMPLES.map((s, i) => (
+            <button
+              type="button"
+              role="tab"
+              data-file={s.id}
+              aria-selected={i === 0 ? "true" : "false"}
+              class:list={["vsc-tab", { active: i === 0 }]}
+            >
+              {s.file}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="vsc-editor">
+        {
+          SAMPLES.map((s, i) => (
+            <div data-sample={s.id} hidden={i !== 0} set:html={html[s.id]} />
+          ))
+        }
+      </div>
+
+      <div class="vsc-terminal">
+        <div class="vsc-term-head">TERMINAL</div>
+        <div class="vsc-term-body">
+          <div><span class="a-green">$</span> bash token-samples/ansi-colors.sh</div>
+          <table class="vsc-ansi">
+            <tbody>
+              {
+                ANSI.map((n) => (
+                  <tr>
+                    <td>{n}</td>
+                    <td class={`fg-${n}`}>The quick brown fox</td>
+                    <td class={`fg-bright${cap(n)}`}>The quick brown fox</td>
+                    <td>
+                      <span class={`bg-${n}`}>&nbsp;normal&nbsp;</span> <span class={`bg-bright${cap(n)}`}>&nbsp;bright&nbsp;</span>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vsc-status">
+    <span>⑂ main</span>
+    <span id="vsc-lang">{LANG_NAMES[SAMPLES[0].id]}</span>
+  </div>
+</div>
+
+<style is:global>
+  .vsc {
+    --vsc-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--vsc-panel-border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: var(--vsc-editor-background);
+    color: var(--vsc-editor-foreground);
+    font-size: 0.8rem;
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.25);
+  }
+  .vsc button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+  .vsc-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.4rem 0.75rem;
+    background: var(--vsc-titleBar-activeBackground);
+    color: var(--vsc-titleBar-activeForeground);
+  }
+  .vsc-dots { display: flex; gap: 0.35rem; }
+  .vsc-dots i { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--vsc-titleBar-activeForeground); opacity: 0.35; }
+  .vsc-title-text { flex: 1; text-align: center; margin-right: 3rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .vsc-body { display: flex; min-height: 0; }
+  .vsc-activity {
+    display: flex;
+    flex-direction: column;
+    width: 3rem;
+    flex: none;
+    background: var(--vsc-activityBar-background);
+    color: var(--vsc-activityBar-inactiveForeground);
+    font-size: 1.1rem;
+  }
+  .vsc-act { padding: 0.6rem 0; text-align: center; border-left: 2px solid transparent; }
+  .vsc-act.on { color: var(--vsc-activityBar-foreground); border-left-color: var(--vsc-activityBar-activeBorder); }
+
+  .vsc-side {
+    width: 12rem;
+    flex: none;
+    background: var(--vsc-sideBar-background);
+    color: var(--vsc-sideBar-foreground);
+  }
+  .vsc-side-title { padding: 0.6rem 0.9rem; font-size: 0.7rem; letter-spacing: 0.05em; color: var(--vsc-sideBarTitle-foreground); }
+  .vsc-files { list-style: none; margin: 0; padding: 0; }
+  .vsc-file { display: block; width: 100%; text-align: left; padding: 0.25rem 0.9rem; }
+  .vsc-file:hover { background: var(--vsc-list-hoverBackground); }
+  .vsc-file.active { background: var(--vsc-list-activeSelectionBackground); }
+
+  .vsc-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .vsc-tabs { display: flex; overflow-x: auto; background: var(--vsc-editorGroupHeader-tabsBackground); }
+  .vsc-tab {
+    flex: none;
+    padding: 0.5rem 0.9rem;
+    background: var(--vsc-tab-inactiveBackground) !important;
+    color: var(--vsc-tab-inactiveForeground) !important;
+    border-top: 2px solid transparent !important;
+  }
+  .vsc-tab.active {
+    background: var(--vsc-tab-activeBackground) !important;
+    color: var(--vsc-tab-activeForeground) !important;
+    border-top-color: var(--vsc-tab-activeBorderTop) !important;
+  }
+
+  .vsc-editor { height: 22rem; overflow: auto; background: var(--vsc-editor-background); }
+  .vsc-editor [hidden] { display: none; }
+  .vsc .code { margin: 0; padding: 0.5rem 0; font-family: var(--vsc-mono); font-size: 0.8rem; line-height: 1.55; color: var(--vsc-editor-foreground); background: none; border: 0; }
+  .vsc .code code { font: inherit; color: inherit; }
+  .vsc .line { display: inline-block; min-width: 100%; vertical-align: top; padding-right: 1rem; }
+  .vsc .line:nth-child(5) { background: var(--vsc-editor-lineHighlightBackground); }
+  .vsc .ln {
+    display: inline-block;
+    width: 3.5ch;
+    margin: 0 1.5ch 0 0.75rem;
+    text-align: right;
+    color: var(--vsc-editorLineNumber-foreground);
+    user-select: none;
+  }
+  .vsc .line:nth-child(5) .ln { color: var(--vsc-editorLineNumber-activeForeground); }
+
+  .vsc-terminal { border-top: 1px solid var(--vsc-panel-border); background: var(--vsc-terminal-background); color: var(--vsc-terminal-foreground); }
+  .vsc-term-head { padding: 0.35rem 0.9rem; font-size: 0.7rem; letter-spacing: 0.05em; border-bottom: 1px solid var(--vsc-panel-border); }
+  .vsc-term-body { padding: 0.5rem 0.9rem; font-family: var(--vsc-mono); font-size: 0.75rem; overflow-x: auto; }
+  .vsc-ansi { border-collapse: separate; border-spacing: 0 0; margin-top: 0.4rem; white-space: nowrap; }
+  .vsc-ansi td { padding: 0 1.2rem 0 0; }
+  .a-green { color: var(--vsc-terminal-ansiGreen); }
+  .vsc-status {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0.9rem;
+    font-size: 0.75rem;
+    background: var(--vsc-statusBar-background);
+    color: var(--vsc-statusBar-foreground);
+  }
+
+  @media (max-width: 767.98px) {
+    .vsc-activity, .vsc-side { display: none; }
+  }
+</style>
+
+<style is:global set:html={ANSI.flatMap((n) => [
+  `.fg-${n}{color:var(--vsc-terminal-ansi${cap(n)})}`,
+  `.fg-bright${cap(n)}{color:var(--vsc-terminal-ansiBright${cap(n)})}`,
+  `.bg-${n}{background:var(--vsc-terminal-ansi${cap(n)});color:var(--vsc-terminal-background)}`,
+  `.bg-bright${cap(n)}{background:var(--vsc-terminal-ansiBright${cap(n)});color:var(--vsc-terminal-background)}`,
+]).join("\n")} />
+
+<script>
+  const root = document.getElementById("mock-editor")!;
+  const LANG: Record<string, string> = {
+    tsx: "TypeScript JSX", css: "CSS", html: "HTML", md: "Markdown", json: "JSON", py: "Python",
+  };
+  function show(id: string) {
+    root.querySelectorAll<HTMLElement>("[data-sample]").forEach((el) => {
+      el.hidden = el.dataset.sample !== id;
+    });
+    root.querySelectorAll<HTMLElement>("[data-file]").forEach((el) => {
+      const on = el.dataset.file === id;
+      el.classList.toggle("active", on);
+      if (el.getAttribute("role") === "tab") el.setAttribute("aria-selected", String(on));
+    });
+    const label = root.querySelector<HTMLElement>(`.vsc-tab[data-file="${id}"]`)?.textContent?.trim() ?? "";
+    root.querySelector("#vsc-lang")!.textContent = LANG[id] ?? "";
+    root.querySelector("#vsc-title-text")!.textContent = `${label} — Bootswatch`;
+  }
+  root.querySelectorAll<HTMLElement>("[data-file]").forEach((el) => {
+    el.addEventListener("click", () => show(el.dataset.file!));
+  });
+</script>
