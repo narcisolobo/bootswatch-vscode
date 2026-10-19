@@ -1,0 +1,147 @@
+{
+  "name": "bootswatch",
+  "displayName": "Bootswatch Themes",
+  "description": "Every Bootswatch theme, ported to VS Code",
+  "version": "1.0.0",
+  "publisher": "narcisolobo",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Bootswatch Brite",
+        "uiTheme": "vs",
+        "path": "./themes/brite-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Cerulean",
+        "uiTheme": "vs",
+        "path": "./themes/cerulean-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Cosmo",
+        "uiTheme": "vs",
+        "path": "./themes/cosmo-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Cyborg",
+        "uiTheme": "vs-dark",
+        "path": "./themes/cyborg-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Darkly",
+        "uiTheme": "vs-dark",
+        "path": "./themes/darkly-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Flatly",
+        "uiTheme": "vs",
+        "path": "./themes/flatly-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Journal",
+        "uiTheme": "vs",
+        "path": "./themes/journal-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Litera",
+        "uiTheme": "vs",
+        "path": "./themes/litera-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Lumen",
+        "uiTheme": "vs",
+        "path": "./themes/lumen-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Lux",
+        "uiTheme": "vs",
+        "path": "./themes/lux-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Materia",
+        "uiTheme": "vs",
+        "path": "./themes/materia-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Minty",
+        "uiTheme": "vs",
+        "path": "./themes/minty-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Morph",
+        "uiTheme": "vs",
+        "path": "./themes/morph-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Pulse",
+        "uiTheme": "vs",
+        "path": "./themes/pulse-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Quartz",
+        "uiTheme": "vs-dark",
+        "path": "./themes/quartz-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Sandstone",
+        "uiTheme": "vs",
+        "path": "./themes/sandstone-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Simplex",
+        "uiTheme": "vs",
+        "path": "./themes/simplex-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Sketchy",
+        "uiTheme": "vs",
+        "path": "./themes/sketchy-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Slate",
+        "uiTheme": "vs-dark",
+        "path": "./themes/slate-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Solar",
+        "uiTheme": "vs-dark",
+        "path": "./themes/solar-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Spacelab",
+        "uiTheme": "vs",
+        "path": "./themes/spacelab-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Superhero",
+        "uiTheme": "vs-dark",
+        "path": "./themes/superhero-color-theme.json"
+      },
+      {
+        "label": "Bootswatch United",
+        "uiTheme": "vs",
+        "path": "./themes/united-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Vapor",
+        "uiTheme": "vs-dark",
+        "path": "./themes/vapor-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Yeti",
+        "uiTheme": "vs",
+        "path": "./themes/yeti-color-theme.json"
+      },
+      {
+        "label": "Bootswatch Zephyr",
+        "uiTheme": "vs",
+        "path": "./themes/zephyr-color-theme.json"
+      }
+    ]
+  }
+}
