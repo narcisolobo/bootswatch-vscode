@@ -161,7 +161,7 @@
     "terminal.ansiBlue": "#0371eb",
     "terminal.ansiMagenta": "#593196",
     "terminal.ansiCyan": "#067eb2",
-    "terminal.ansiWhite": "#adb5bd",
+    "terminal.ansiWhite": "#444444",
     "terminal.ansiBrightBlack": "#868e96",
     "terminal.ansiBrightRed": "#c30417",
     "terminal.ansiBrightGreen": "#026d2e",
@@ -169,7 +169,7 @@
     "terminal.ansiBrightBlue": "#015bc0",
     "terminal.ansiBrightMagenta": "#44167d",
     "terminal.ansiBrightCyan": "#006691",
-    "terminal.ansiBrightWhite": "#949ca4"
+    "terminal.ansiBrightWhite": "#868e96"
   },
   "tokenColors": [
     {
