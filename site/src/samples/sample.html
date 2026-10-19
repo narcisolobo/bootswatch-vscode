@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- HTML sample: tags, attributes, entities, embedded CSS and JS -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Token sample &amp; friends</title>
+    <style>
+      .card { color: #2c3e50; padding: 1rem; }
+    </style>
+  </head>
+  <body class="theme-flatly" data-mode="light">
+    <main id="app">
+      <h1>Hello &mdash; world</h1>
+      <p>Some <strong>bold</strong>, <em>italic</em> and <a href="https://bootswatch.com" target="_blank">link</a> text.</p>
+      <input type="checkbox" checked disabled aria-label="Example" />
+      <img src="swatch.png" alt="A color swatch" width="64" height="64" />
+    </main>
+    <script>
+      const count = 26;
+      document.querySelector("#app").dataset.count = String(count);
+    </script>
+  </body>
+</html>

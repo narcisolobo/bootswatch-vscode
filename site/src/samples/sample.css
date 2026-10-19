@@ -1,0 +1,39 @@
+/* CSS sample: selectors, properties, values, units, at-rules */
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+:root {
+  --primary: #2c3e50;
+  --radius: 0.375rem;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: "Lato", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+#app > .card:hover::after,
+.btn[type="button"]:not(:disabled) {
+  color: var(--primary);
+  background-color: rgba(44, 62, 80, 0.15);
+  border: 1px solid hsl(210 29% 24%);
+  border-radius: calc(var(--radius) * 2);
+  transform: translateY(-2px) rotate(3deg);
+  transition: opacity 150ms ease-in-out !important;
+  width: min(100%, 48rem);
+  z-index: 10;
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 768px) {
+  .card {
+    color: white;
+    padding: 2em 4vw;
+  }
+}
+
+@keyframes pulse {
+  from { opacity: 1; }
+  50% { opacity: 0.4; }
+  to { opacity: 1; }
+}
