@@ -5,6 +5,13 @@
   "version": "1.0.0",
   "publisher": "narcisolobo",
   "icon": "images/icon.png",
+  "files": [
+    "themes/*.json",
+    "images/icon.png",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
   "engines": {
     "vscode": "^1.70.0"
   },
