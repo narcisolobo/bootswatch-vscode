@@ -1,10 +1,15 @@
 {
   "name": "bootswatch",
-  "displayName": "Bootswatch Themes",
+  "displayName": "Bootswatch for VS Code",
   "description": "Every Bootswatch theme, ported to VS Code",
   "version": "1.0.0",
   "publisher": "narcisolobo",
   "icon": "images/icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/narcisolobo/bootswatch-vscode"
+  },
   "files": [
     "themes/*.json",
     "images/icon.png",

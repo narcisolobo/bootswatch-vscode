@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Bootswatch Themes for VS Code are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+All notable changes to Bootswatch for VS Code are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## 1.0.0 - TBD on publish
 
