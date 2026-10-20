@@ -114,7 +114,8 @@ const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
     font-size: 0.8rem;
     box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.25);
   }
-  .vsc button {
+  /* :where() keeps this reset at zero specificity so component rules win. */
+  :where(.vsc button) {
     font: inherit;
     color: inherit;
     background: none;
@@ -164,14 +165,14 @@ const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
   .vsc-tab {
     flex: none;
     padding: 0.5rem 0.9rem;
-    background: var(--vsc-tab-inactiveBackground) !important;
-    color: var(--vsc-tab-inactiveForeground) !important;
-    border-top: 2px solid transparent !important;
+    background: var(--vsc-tab-inactiveBackground);
+    color: var(--vsc-tab-inactiveForeground);
+    border-top: 2px solid transparent;
   }
   .vsc-tab.active {
-    background: var(--vsc-tab-activeBackground) !important;
-    color: var(--vsc-tab-activeForeground) !important;
-    border-top-color: var(--vsc-tab-activeBorderTop) !important;
+    background: var(--vsc-tab-activeBackground);
+    color: var(--vsc-tab-activeForeground);
+    border-top-color: var(--vsc-tab-activeBorderTop);
   }
 
   .vsc-editor { height: 22rem; overflow: auto; background: var(--vsc-editor-background); }
