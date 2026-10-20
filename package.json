@@ -4,6 +4,7 @@
   "description": "Every Bootswatch theme, ported to VS Code",
   "version": "1.0.0",
   "publisher": "narcisolobo",
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.70.0"
   },
