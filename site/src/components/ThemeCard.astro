@@ -1,26 +1,26 @@
 ---
 import type { ThemeInfo } from "../lib/themes";
-import { previewColours } from "../lib/preview";
+import { previewColors } from "../lib/preview";
 
 interface Props {
   theme: ThemeInfo;
 }
 const { theme } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-const c = previewColours(theme);
+const c = previewColors(theme);
 // Bar widths in percent, so each card reads as a few lines of code.
 const bars = [
-  { colour: c.keyword, width: 38 },
-  { colour: c.string, width: 62 },
-  { colour: c.function, width: 48 },
-  { colour: c.type, width: 30 },
-  { colour: c.comment, width: 70 },
+  { color: c.keyword, width: 38 },
+  { color: c.string, width: 62 },
+  { color: c.function, width: 48 },
+  { color: c.type, width: 30 },
+  { color: c.comment, width: 70 },
 ];
 ---
 
 <div class="card h-100">
   <div class="theme-preview" style={`background:${c.background}`} aria-hidden="true">
-    {bars.map((b) => <span style={`background:${b.colour};width:${b.width}%`} />)}
+    {bars.map((b) => <span style={`background:${b.color};width:${b.width}%`} />)}
   </div>
   <div class="card-body">
     <h2 class="h5 card-title">

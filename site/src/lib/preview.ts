@@ -1,6 +1,6 @@
 import type { ThemeInfo } from "./themes";
 
-export type PreviewColours = {
+export type PreviewColors = {
   background: string;
   keyword: string;
   string: string;
@@ -9,19 +9,19 @@ export type PreviewColours = {
   comment: string;
 };
 
-// The colour the theme file gives a scope, read from tokenColors.
-function scopeColour(theme: ThemeInfo, scope: string): string {
+// The color the theme file gives a scope, read from tokenColors.
+function scopeColor(theme: ThemeInfo, scope: string): string {
   const rule = theme.json.tokenColors.find((r) => [r.scope ?? []].flat().includes(scope));
   return rule?.settings.foreground ?? theme.json.colors["editor.foreground"];
 }
 
-export function previewColours(theme: ThemeInfo): PreviewColours {
+export function previewColors(theme: ThemeInfo): PreviewColors {
   return {
     background: theme.json.colors["editor.background"],
-    keyword: scopeColour(theme, "keyword"),
-    string: scopeColour(theme, "string"),
-    function: scopeColour(theme, "entity.name.function"),
-    type: scopeColour(theme, "entity.name.type"),
-    comment: scopeColour(theme, "comment"),
+    keyword: scopeColor(theme, "keyword"),
+    string: scopeColor(theme, "string"),
+    function: scopeColor(theme, "entity.name.function"),
+    type: scopeColor(theme, "entity.name.type"),
+    comment: scopeColor(theme, "comment"),
   };
 }
