@@ -6,9 +6,13 @@ active: docs
 
 ## Install
 
-Once the extension is published, install **Bootswatch for VS Code** from the VS Code Marketplace: open the Extensions view, search for "Bootswatch", and click Install.
+Install **Bootswatch for VS Code** from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=narcisolobo.bootswatch), or from inside VS Code: open the Extensions view, search for "Bootswatch", and click Install.
 
-Until it's published, install it from a `.vsix` file. This section will be updated with the download link and the one command to run (`code --install-extension <file>.vsix`).
+You can also install it from a terminal:
+
+```
+code --install-extension narcisolobo.bootswatch
+```
 
 ## Choosing a theme
 

@@ -1,7 +1,7 @@
-// owner and repo are placeholders until the GitHub repo exists.
+// owner and repo set the GitHub Pages base path and links.
 export const SITE = {
   owner: "narcisolobo",
   repo: "bootswatch-vscode",
-  marketplaceUrl: null,
+  marketplaceUrl: "https://marketplace.visualstudio.com/items?itemName=narcisolobo.bootswatch",
   defaultTheme: "superhero",
 };
