@@ -1,0 +1,71 @@
+---
+import { SITE } from "../../site.config.mjs";
+import Base from "../layouts/Base.astro";
+import MockEditor from "../components/MockEditor.astro";
+import { loadThemes } from "../lib/themes";
+
+const themes = loadThemes();
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+const first = themes.find((t) => t.name === SITE.defaultTheme)!;
+const meta = {
+  names: themes.map((t) => t.name),
+  themes: Object.fromEntries(themes.map((t) => [t.name, { label: t.label, tagline: t.tagline }])),
+};
+const installHref = SITE.marketplaceUrl ?? `${base}docs/#install`;
+---
+
+<Base title="Themes · Bootswatch for VS Code" active="themes">
+  <section class="py-3">
+    <div class="d-flex align-items-center gap-3 mb-2">
+      <button type="button" class="btn btn-outline-primary" id="prev-theme" aria-label="Previous theme">‹</button>
+      <h1 class="display-4 mb-0" id="hero-name">{first.label}</h1>
+      <button type="button" class="btn btn-outline-primary" id="next-theme" aria-label="Next theme">›</button>
+    </div>
+    <p class="lead" id="hero-tagline">{first.tagline}</p>
+    <p class="d-flex flex-wrap gap-2">
+      <a class="btn btn-primary" href={installHref}>Install for VS Code</a>
+      <a class="btn btn-outline-secondary" id="bootswatch-link" href={`https://bootswatch.com/${first.name}/`}>
+        View on Bootswatch
+      </a>
+    </p>
+    <p class="text-body-secondary small">Use the ← and → keys to flip through all {themes.length} themes.</p>
+  </section>
+
+  <MockEditor />
+
+  <script type="application/json" id="theme-meta" set:html={JSON.stringify(meta)} />
+
+  <script>
+    import { shouldFlip, stepTheme } from "../lib/switcher";
+
+    const meta = JSON.parse(document.getElementById("theme-meta")!.textContent!) as {
+      names: string[];
+      themes: Record<string, { label: string; tagline: string }>;
+    };
+    const nameEl = document.getElementById("hero-name")!;
+    const taglineEl = document.getElementById("hero-tagline")!;
+    const linkEl = document.getElementById("bootswatch-link") as HTMLAnchorElement;
+    const current = () => document.documentElement.dataset.theme ?? meta.names[0];
+
+    function render(name: string) {
+      const t = meta.themes[name];
+      if (!t) return;
+      nameEl.textContent = t.label;
+      taglineEl.textContent = t.tagline;
+      linkEl.href = `https://bootswatch.com/${name}/`;
+    }
+    const flip = (delta: 1 | -1) =>
+      document.dispatchEvent(new CustomEvent("setTheme", { detail: stepTheme(meta.names, current(), delta) }));
+
+    document.addEventListener("themechange", (e) => render((e as CustomEvent<string>).detail));
+    render(current());
+    document.getElementById("prev-theme")!.addEventListener("click", () => flip(-1));
+    document.getElementById("next-theme")!.addEventListener("click", () => flip(1));
+    document.addEventListener("keydown", (e) => {
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      if (!shouldFlip(e.key, (e.target as HTMLElement).tagName)) return;
+      e.preventDefault();
+      flip(e.key === "ArrowRight" ? 1 : -1);
+    });
+  </script>
+</Base>
